@@ -1,0 +1,59 @@
+﻿@model TicketViewModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>
+    <a href="@Url.Action("Index","Ticket")" style="float:right; color:blue"><i class="fas fa-arrow-circle-left"></i></a>
+    Nuevo Ticket
+</h2>
+<hr />
+@using (Html.BeginForm("Nuevo", "Ticket", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Fecha de Generacion</label>
+        @Html.TextBoxFor(m => m.Ticket.FechaGeneracion, new { @class = "form-control", @required = "Requerido", @type="date" })
+    </div>
+    <div class="form-group">
+        <label>Estado</label>
+        <select name="Ticket.EstadoId" class="form-control" required>
+            <option value="">Seleccione...</option>
+            @foreach (var estado in Model.Estados)
+            {
+                <option value="@estado.Id">@estado.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Usuario</label>
+        <select name="Ticket.UsuarioId" class="form-control" required>
+            <option value="">Seleccione...</option>
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <option value="@usuario.Id">@usuario.Nombres</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Descripcion</label>
+        @Html.TextBoxFor(m => m.Ticket.Descripcion, new { @class = "form-control", @required = "Requerido" })
+    </div>
+    <div class="form-group">
+        <label>Responsable</label>
+        <select name="Ticket.ResponsableId" class="form-control" required>
+            <option value="">Seleccione...</option>
+            @foreach (var responsable in Model.Responsables)
+            {
+                <option value="@responsable.Id">@responsable.Nombres</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-success" />
+    </div>
+}
+
+
+
+
+

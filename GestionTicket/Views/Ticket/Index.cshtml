@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GestionTicket.Models.Ticket>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>
+    <a href="@Url.Action("Nuevo","Ticket")" style="float:right; color:green"><i class="fas fa-plus-circle"></i></a>
+    Listado Ticket</h2>
+<hr />
+<table class="table table-bordered table-hover">
+   
+    <thead>
+        <tr>
+            <th>Accion</th>
+            <th>#Ticket</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Usuario</th>
+            <th>Responsable</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        @foreach (var ticket in Model)
+        {
+        <tr>
+            <td>
+                <a>Actualizar</a>
+                <a>Eliminar</a>
+                <a>Ver</a>
+            </td>
+            <td>@ticket.Id</td>
+            <td>@ticket.FechaGeneracion</td>
+            <td>@ticket.Estado.Nombre</td>
+            <td>@ticket.Usuario.Nombres</td>
+            <td>@ticket.Responsable.Nombres</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
