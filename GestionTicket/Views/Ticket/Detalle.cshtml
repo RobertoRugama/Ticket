@@ -1,0 +1,32 @@
+﻿@model GestionTicket.ViewModels.TicketViewModel
+@{
+    ViewBag.Title = "Detalle Tickets";
+}
+
+<h2>
+    <a style="float:right; color:blue" href="@Url.Action("Index","Ticket")"><i class="fas fa-arrow-alt-circle-left"></i></a>
+    Detalle Tickets</h2>
+<hr />
+<div class="form-group">
+    <label class="col-md-2">Fecha Generacion:  </label>
+    <label class="col-md-2">@Model.Ticket.FechaGeneracion</label>
+</div>
+<div class="form-group">
+    <label class="col-md-2">Estado:  </label>
+    <label class="col-md-2">@Model.Ticket.Estado.Nombre</label>    
+</div>
+<div class="form-group">
+    <label class="col-md-2">Usuario: </label>
+    <label class="col-md-2">@Model.Ticket.Usuario.Nombres</label>  
+</div>
+<div class="form-group">
+    <label class="col-md-2">Descripcion: </label>
+    <label class="col-md-2">@Model.Ticket.Descripcion</label>    
+</div>
+<div class="form-group">
+    <label class="col-md-2">Responsable: </label>
+    <label class="col-md-2">@Model.Ticket.Responsable.Nombres</label>
+</div>
+
+
+

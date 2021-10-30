@@ -38,6 +38,12 @@ namespace GestionTicket.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [HttpGet]
+        public ActionResult Detalle(int Id)
+        {
+            var viewModel = new TicketViewModel();
+            viewModel.Ticket = context.Tickets.FirstOrDefault(x => x.Id == Id);
+            return View(viewModel);
+        }
     }
 }
