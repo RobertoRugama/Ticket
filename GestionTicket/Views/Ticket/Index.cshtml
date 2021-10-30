@@ -25,9 +25,9 @@
         {
         <tr>
             <td>
-                <a>Actualizar</a>
-                <a>Eliminar</a>
-                <a>Ver</a>
+                <a href="@Url.Action("Detalle","Ticket", new { Id = ticket.Id })" title="Ver detalle" style="color:blue"><i class="fas fa-search-plus"></i></a>
+                <a href="@Url.Action("Actualizar","Ticket", new { Id = ticket.Id})" title="Actualizar" style="color:green"><i class="fas fa-user-edit"></i></a>
+                <a href="@Url.Action("Eliminar","Ticket", new { id = ticket.Id })" title="Eliminar" style="color:red"><i class="far fa-trash-alt"></i></a>
             </td>
             <td>@ticket.Id</td>
             <td>@ticket.FechaGeneracion</td>
