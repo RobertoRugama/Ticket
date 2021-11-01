@@ -1,0 +1,62 @@
+﻿@model GestionTicket.ViewModels.TicketViewModel
+@{
+    ViewBag.Title = "Actualizar Ticket";
+}
+
+<h2>
+    <a href="@Url.Action("Index","Ticket")" style="color:blue;float:right"><i class="fa fa-fast-backward"></i></a>
+    Actualizar Ticket
+</h2>
+<hr />
+@using (Html.BeginForm("Actualizar", "Ticket", FormMethod.Post))
+{
+    <div class="form-group">
+        <label class="col-md-2">Codigo #: </label>
+        @Html.TextBoxFor(m => m.Ticket.Id, new { @class = "col-md-1", @readOnly = "readOnly" })
+    </div>
+   <div class="form-group">
+       <label class="col-md-2">Fecha Generacion: </label>
+       @Html.TextBoxFor(m => m.Ticket.FechaGeneracion, new { @class = "col-md-2", @required = "Requerido" })
+   </div>
+   <div class="form-group">
+       <label class="col-md-2">Estado: </label>
+       <select name="Ticket.EstadoId" class="col-md-2" required>
+           @foreach (var estado in Model.Estados)
+           {
+               <option value="@estado.Id"@(estado.Id==Model.Ticket.EstadoId ?"selected":"")>@estado.Nombre</option>
+           }
+       </select>
+   </div>
+   <div class="form-group">
+       <label class="col-md-2">Responsable: </label>
+       <select name="Ticket.ResponsableId" class="col-md-2" required>
+           @foreach (var responsable in Model.Responsables)
+           {
+               <option value="@responsable.Id"@(responsable.Id ==Model.Ticket.ResponsableId ? "selected":"")>
+           @responsable.Nombres</option>
+           }
+       </select>
+   </div>
+   <div class="form-group">
+       <label class="col-md-2">Usuario: </label>
+       <select name="Ticket.UsuarioId" required class="col-md-2">
+           @foreach (var usuario in Model.Usuarios)
+           {
+               <option value="@usuario.Id" @(usuario.Id ==Model.Ticket.UsuarioId ?"selected":"")>@usuario.Nombres</option>
+           }
+       </select>
+   </div>
+  <div class="form-group">
+      <label class="col-md-2">Descripcion: </label>
+      @Html.TextAreaFor(m =>m.Ticket.Descripcion, new { @class="col-md-2", @required="El campo es requerido"})
+  </div>
+
+  <div class="form-group">
+      <input href="@Url.Action("Index","Ticket")" type="submit" value="Actualizar" class="btn btn-outline-success col-md-2" style="color:green;" />
+      <input href="#" type="submit" value="Limpiar" class="btn btn-outline-secondary col-md-2" style="color:darkgray;" />
+  </div>
+
+}
+
+
+

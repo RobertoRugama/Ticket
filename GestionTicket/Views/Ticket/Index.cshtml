@@ -5,37 +5,74 @@
 
 <h2>
     <a href="@Url.Action("Nuevo","Ticket")" style="float:right; color:green"><i class="fas fa-plus-circle"></i></a>
-    Listado Ticket</h2>
+    Listado Ticket
+</h2>
 <hr />
 <table class="table table-bordered table-hover">
-   
+
     <thead>
         <tr>
+            <th>Codigo</th>
             <th>Accion</th>
-            <th>#Ticket</th>
             <th>Fecha</th>
             <th>Estado</th>
             <th>Usuario</th>
             <th>Responsable</th>
+            <th>Descripción</th>
         </tr>
     </thead>
     <tbody>
-        
+
         @foreach (var ticket in Model)
         {
-        <tr>
-            <td>
-                <a href="@Url.Action("Detalle","Ticket", new { Id = ticket.Id })" title="Ver detalle" style="color:blue"><i class="fas fa-search-plus"></i></a>
-                <a href="@Url.Action("Actualizar","Ticket", new { Id = ticket.Id})" title="Actualizar" style="color:green"><i class="fas fa-user-edit"></i></a>
-                <a href="@Url.Action("Eliminar","Ticket", new { id = ticket.Id })" title="Eliminar" style="color:red"><i class="far fa-trash-alt"></i></a>
-            </td>
-            <td>@ticket.Id</td>
-            <td>@ticket.FechaGeneracion</td>
-            <td>@ticket.Estado.Nombre</td>
-            <td>@ticket.Usuario.Nombres</td>
-            <td>@ticket.Responsable.Nombres</td>
-        </tr>
+            <tr>
+                <td>
+                    <a href="@Url.Action("Detalle","Ticket", new { Id = ticket.Id })" title="Ver detalle" style="color:blue"><i class="fas fa-search-plus"></i></a>
+                    <a href="@Url.Action("Actualizar","Ticket", new { Id = ticket.Id})" title="Actualizar" style="color:green"><i class="fas fa-user-edit"></i></a>
+                    <a href="javascript:void(0)" onclick="getId(@ticket.Id)" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Eliminar" style="color:red"><i class="far fa-trash-alt"></i></a>
+                </td>
+                <td>@ticket.Id</td>
+                <td>@ticket.FechaGeneracion</td>
+                <td>@ticket.Estado.Nombre</td>
+                <td>@ticket.Usuario.Nombres</td>
+                <td>@ticket.Responsable.Nombres</td>
+                <td>@ticket.Descripcion</td>
+            </tr>
         }
     </tbody>
 </table>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de eliminar el ticekt?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="deleteTicket()">Si, estoy seguro</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="" id="idTicket" />
+
+@section Scripts{
+    <script>
+    function deleteTicket() {
+        let url = '@Url.Action("Eliminar","Ticket")';
+        url = url + '/'+ $("#idTicket").val();
+        window.location.href = url;
+    }
+    function getId(id) {
+        $("#idTicket").val(id);
+    }
+    </script>
+}
+
+
 
