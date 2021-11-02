@@ -9,12 +9,11 @@ namespace GestionTicket.Models
     [Table("Responsable")]
     public partial class Responsable
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Responsable()
         {
             Ticket = new HashSet<Ticket>();
         }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
@@ -30,12 +29,11 @@ namespace GestionTicket.Models
         public string Correo { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public string Cargo { get; set; }
+        public int CargoId { get; set; }
 
         public bool? Activo { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Ticket { get; set; }
+        public virtual Cargo Cargo { get; set; }
     }
 }

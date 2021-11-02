@@ -9,6 +9,7 @@ namespace GestionTicket.Models
     [Table("Ticket")]
     public partial class Ticket
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime FechaGeneracion { get; set; }
