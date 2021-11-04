@@ -1,0 +1,34 @@
+﻿@model IEnumerable<GestionTicket.Models.Responsable>
+    @{ 
+        Layout = null;
+    }
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="table table-primary">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Cargo</th>
+                <th>Activo</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var resp in Model)
+            {
+                <tr>
+                    <td>@resp.Nombres</td>
+                    <td>@resp.Apellidos</td>
+                    <td>@resp.Correo</td>
+                    <td>@resp.Cargo.Nombre</td>
+                    <td><input type="checkbox" checked="@resp.Activo" disabled /></td>
+                    <td>
+                        <a href="@Url.Action("Actualizar","Responsable", new { Id = resp.Id })" title="Actualizar" style="color:blue"><i class="fas fa-edit"></i></a>                    
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

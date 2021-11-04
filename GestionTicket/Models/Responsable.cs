@@ -31,7 +31,7 @@ namespace GestionTicket.Models
         [Required]
         public int CargoId { get; set; }
 
-        public bool? Activo { get; set; }
+        public bool Activo { get; set; }
 
         public virtual ICollection<Ticket> Ticket { get; set; }
         public virtual Cargo Cargo { get; set; }
