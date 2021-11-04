@@ -64,8 +64,17 @@ namespace GestionTicket.Controllers
             } while (updateFalied);
             return RedirectToAction("Create");
         }
+        [HttpGet]
+        public ActionResult Eliminar(int Id)
+        {
+            var responsable = context.Responsables.FirstOrDefault(x => x.Id == Id);
+            context.Responsables.Remove(responsable);
+            context.SaveChanges();
+            return RedirectToAction("Create");
+           
+        }
 
-      
+
 
     }
 }

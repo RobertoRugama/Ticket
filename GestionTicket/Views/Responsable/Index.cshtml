@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<GestionTicket.Models.Responsable>
-    @{ 
-        Layout = null;
-    }
+@{
+    Layout = null;
+}
 <div class="container">
     <table class="table table-bordered">
         <thead class="table table-primary">
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Correo</th>
@@ -18,13 +19,15 @@
             @foreach (var resp in Model)
             {
                 <tr>
+                    <td>@resp.Id</td>
                     <td>@resp.Nombres</td>
                     <td>@resp.Apellidos</td>
                     <td>@resp.Correo</td>
                     <td>@resp.Cargo.Nombre</td>
                     <td><input type="checkbox" checked="@resp.Activo" disabled /></td>
                     <td>
-                        <a href="@Url.Action("Actualizar","Responsable", new { Id = resp.Id })" title="Actualizar" style="color:blue"><i class="fas fa-edit"></i></a>                    
+                        <a href="@Url.Action("Actualizar","Responsable", new { Id = resp.Id })" title="Actualizar" style="color:blue"><i class="fas fa-edit"></i></a>
+                        <a href="javascript:void(0)" onclick="getId(@resp.Id)" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Eliminar" style="color:red"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
             }
@@ -32,3 +35,35 @@
         </tbody>
     </table>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de eliminar el Registro?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="deleteResponsable()">Si, estoy seguro</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="" id="ResponsableId" />
+
+@section Scripts{
+    <script>
+        function deleteResponsable() {
+        let url = '@Url.Action("Eliminar","Responsable")';
+        url = url + '/'+ $("#ResponsableId").val();
+        window.location.href = url;
+    }
+    function getId(id) {
+        $("#ResponableId").val(Id);
+    }
+    </script>
+}
