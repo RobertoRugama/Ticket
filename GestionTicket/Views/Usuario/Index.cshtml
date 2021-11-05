@@ -1,0 +1,60 @@
+﻿@model IEnumerable<GestionTicket.Models.Usuario>
+
+@{
+    ViewBag.Title = "Ususarios";
+}
+
+<h2>
+    <a href="@Url.Action("Create","Usuario")" style="float:right;color:blue"><i class="fas fa-plus-circle"></i> </a>
+    Lista Usuarios</h2>
+<hr />
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+        <th>Editar</th><th>Detalles</th><th>Eliminar</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit","Usuario" , new { Id = item.Id })" style="color:lightseagreen"><i class="fas fa-user-edit"></i></a>
+        </td>
+        <td>
+            <a href="@Url.Action("Details","Usuario" , new {Id = item.Id })" style="color:blue"><i class="fas fa-search-plus"></i></a>
+        </td>
+        <td>
+            <a href="@Url.Action("Delete","Usuario" , new {Id = item.Id })" style="color:red"><i class="fas fa-trash-alt"></i></a>
+        </td>
+    </tr>
+}
+
+</table>
