@@ -16,6 +16,7 @@ namespace GestionTicket.Models
         public virtual DbSet<Responsable> Responsables { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Cargo> Cargos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -40,9 +41,15 @@ namespace GestionTicket.Models
                 .Property(e => e.Correo)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Responsable>()
-                .Property(e => e.Cargo)
+            modelBuilder.Entity<Cargo>()
+                .Property(e => e.Nombre)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Cargo>()
+                .HasMany(e => e.Responsables)
+                .WithRequired(e => e.Cargo)
+                .WillCascadeOnDelete(false);
+                
 
             modelBuilder.Entity<Responsable>()
                 .HasMany(e => e.Ticket)

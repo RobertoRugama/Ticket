@@ -1,0 +1,53 @@
+﻿@model GestionTicket.ViewModels.ViewModelResp
+@{
+    ViewBag.Title = "Actualizar";
+}
+<h2>
+    <a href="@Url.Action("Create","Responsable")" style="float:right; color:blue"> <i class="fas fa-arrow-circle-left"></i></a>
+    Actualizar Responsable
+</h2>
+<hr />
+@using (Html.BeginForm("Actualizar", "Responsable", FormMethod.Post))
+{
+
+    <div class="container">
+        <div class="form-group">
+            <label class="col-md-2">ID: # </label>
+            @Html.TextBoxFor(m => m.Responsable.Id, new { @class = "col-md-1", @ReadOnly = "ReadOnly" })
+        </div>
+        <div class="form-group">
+            <label class="col-md-2">Nombres: </label>
+            @Html.TextBoxFor(m => m.Responsable.Nombres, new { @class = "col-md-2", @required = "Requerido" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Apellidos: </label>
+            @Html.TextBoxFor(m => m.Responsable.Apellidos, new { @class = "col-md-2", @required = "Requerido" })
+        </div>
+        <div class="form-group">
+            <label class="col-md-2">Correo: </label>
+            @Html.TextBoxFor(m => m.Responsable.Correo, new { @class = "col-md-2", @required = "Requerido" })
+        </div>
+        <div class="form-group">
+            <label class="col-md-2">Cargo: </label>
+            <select name="Responsable.CargoId" class="col-md-2" required">
+                @foreach (var cargo in Model.Cargos)
+                {
+                    <option value="@cargo.Id" @(cargo.Id == Model.Responsable.CargoId ? "selected" : "")>@cargo.Nombre</option>
+                }
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2">Activo</label>
+            @Html.CheckBoxFor(m => m.Responsable.Activo, new { @class = "col-md-2" })
+        </div>
+        <div class="form-group">
+            <input href="@Url.Action("Create","Responsable")" type="submit" value="Actualizar" class="btn btn-secondary col-md-2" />
+        </div>
+    </div>
+    <div class="col-sm-12">@{Html.RenderAction("Index", "Responsable");}</div>
+}
+
+
+
