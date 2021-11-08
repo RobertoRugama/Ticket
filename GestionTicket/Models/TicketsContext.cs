@@ -49,7 +49,7 @@ namespace GestionTicket.Models
                 .HasMany(e => e.Responsables)
                 .WithRequired(e => e.Cargo)
                 .WillCascadeOnDelete(false);
-                
+
 
             modelBuilder.Entity<Responsable>()
                 .HasMany(e => e.Ticket)
@@ -78,7 +78,11 @@ namespace GestionTicket.Models
 
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.Correo)
-                .IsUnicode(false);
+                .IsUnicode(false); 
+
+            modelBuilder.Entity<Usuario>()
+            .Property(e => e.Password)
+            .IsUnicode(false);
 
             modelBuilder.Entity<Usuario>()
                 .HasMany(e => e.Ticket)

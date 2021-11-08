@@ -57,11 +57,12 @@ namespace GestionTicket.Migrations
 
             var usuarios = new List<Usuario>
             {
-                new Usuario { Nombres="Darwind", Apellidos="Mendez", Correo="darwind.mendez@cashpak.com",Telefono="+50558764317", Activo =true },
-                new Usuario { Nombres="Jose Medardo", Apellidos="Reyes Blandon", Correo="medardo.reyers@cashpak.com",Telefono="+50556567896", Activo =true },
-                new Usuario { Nombres="Dania Maria", Apellidos="Cordero Balle", Correo="Dania.Cordero@cashpak.com",Telefono="+50554567896", Activo =true },
-                new Usuario { Nombres="Masiel Yesenia", Apellidos="Cruz Ramirez", Correo="yesenia.cruz@cashpak.com",Telefono="+50545634578", Activo =true },
-                new Usuario { Nombres="Modesto", Apellidos="Corea", Correo="Modesto.corea@cashpak.com",Telefono="+50545634867", Activo =true },
+                new Usuario { Nombres="Darwind", Apellidos="Mendez", Correo="darwind.mendez@cashpak.com",Telefono="+50558764317", Activo =true, Password ="1234" },
+                new Usuario { Nombres="Jose Medardo", Apellidos="Reyes Blandon", Correo="medardo.reyers@cashpak.com",Telefono="+50556567896", Activo =true, Password ="1234" },
+                new Usuario { Nombres="Dania Maria", Apellidos="Cordero Balle", Correo="Dania.Cordero@cashpak.com",Telefono="+50554567896", Activo =true, Password ="1234" },
+                new Usuario { Nombres="Masiel Yesenia", Apellidos="Cruz Ramirez", Correo="yesenia.cruz@cashpak.com",Telefono="+50545634578", Activo =true, Password ="1234" },
+                new Usuario { Nombres="Modesto", Apellidos="Corea", Correo="Modesto.corea@cashpak.com",Telefono="+50545634867", Activo =true, Password ="1234" },
+
             };
             usuarios.ForEach(c => context.Usuarios.AddOrUpdate(a => a.Nombres, c));
             context.SaveChanges();

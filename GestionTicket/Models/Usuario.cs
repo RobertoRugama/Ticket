@@ -35,6 +35,11 @@ namespace GestionTicket.Models
 
         public bool Activo { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        public string Password { get; set; }
+
+
         public virtual ICollection<Ticket> Ticket { get; set; }
     }
 }
